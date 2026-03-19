@@ -1,5 +1,7 @@
+
 import streamlit as st
 
+# Page config
 st.set_page_config(
     page_title="Air Quality Predictor | Neural Networks",
     page_icon="🌫️",
@@ -43,7 +45,10 @@ html, body, [class*="css"] {
 }
 
 /* Headers */
-h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
+h1, h2, h3 { 
+    font-family: 'Space Grotesk', sans-serif; 
+    font-weight: 700; 
+}
 
 /* Buttons */
 .stButton > button {
@@ -68,7 +73,9 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
 }
 
 /* Code font */
-code { font-family: 'JetBrains Mono', monospace; }
+code { 
+    font-family: 'JetBrains Mono', monospace; 
+}
 
 /* Info boxes */
 .aqi-box {
@@ -84,36 +91,37 @@ code { font-family: 'JetBrains Mono', monospace; }
 with st.sidebar:
     st.markdown("## 🌫️ Air Quality Prediction with Neural Network")
     st.markdown("---")
+    
     page = st.radio(
         "Navigate",
         ["🏠 Home", "📊 Data Explorer", "🧠 Model Training", "🔮 Live Predictor", "📈 Model Evaluation"],
         label_visibility="collapsed"
     )
+    
     st.markdown("---")
     st.markdown("**About this Project**")
     st.markdown(
         "A neural network trained on environmental sensor data to predict AQI levels in real-time.",
         help="Built with TensorFlow/Keras + Streamlit"
     )
-    
-    
 
-# Route to pages
+# Route to pages (FIXED)
 if page == "🏠 Home":
-    from pages_src.home import show
-    show()
+    from pages.home import show as home_page
+    home_page()
+
 elif page == "📊 Data Explorer":
-    from pages_src.data_explorer import show
-    show()
+    from pages.data_explorer import show as data_page
+    data_page()
+
 elif page == "🧠 Model Training":
-    from pages_src.model_training import show
-    show()
+    from pages.model_training import show as training_page
+    training_page()
+
 elif page == "🔮 Live Predictor":
-    from pages_src.predictor import show
-    show()
+    from pages.predictor import show as predictor_page
+    predictor_page()
+
 elif page == "📈 Model Evaluation":
-    from pages_src.evaluation import show
-    show()
-
-
-
+    from pages.evaluation import show as eval_page
+    eval_page()
